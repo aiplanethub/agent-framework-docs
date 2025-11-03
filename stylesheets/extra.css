@@ -1,83 +1,89 @@
-/* Fix footer/sidebar overlap */
-.md-footer {
-  z-index: 1;
-  margin-left: 0;
+/* -----------------------------------------------------------
+   ✅ HEADER / NAV — Classic White / Black
+   ----------------------------------------------------------- */
+
+.md-header {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 0.25rem 0;
 }
 
-@media screen and (min-width: 60em) {
-  .md-footer {
-    margin-left: 12.1rem;
-  }
+.md-header__button.md-logo {
+  margin-right: .35rem !important;
 }
 
-@media screen and (min-width: 76.25em) {
-  .md-footer {
-    margin-left: 12.1rem;
-  }
+.md-header__title {
+  font-weight: 700;
+  color: #000 !important;
 }
 
-/* Ensure footer doesn't overlap with sidebar */
-.md-sidebar--primary {
-  z-index: 2;
+/* Tabs navigation */
+.md-tabs__item {
+  font-weight: 500;
+  font-size: .9rem;
+  border-radius: 4px;
+  transition: background .25s;
 }
 
-/* Better syntax highlighting for light mode */
+.md-tabs__item:hover {
+  background: rgba(0,0,0,0.07);
+}
+
+.md-tabs__item--active {
+  border-bottom: 2px solid #000; /* Black active indicator */
+}
+
+/* -----------------------------------------------------------
+   ✅ GLOBAL COLOR VARIABLES (White + Black)
+   ----------------------------------------------------------- */
+
+:root {
+  --md-primary-fg-color: #000; /* Black */
+  --md-primary-fg-color--light: #222;
+  --md-primary-fg-color--dark: #000;
+}
+
+/* Light mode */
 [data-md-color-scheme="default"] {
-  --md-code-fg-color: #24292e;
-  --md-code-bg-color: #f6f8fa;
-
-  /* Improved contrast for light mode syntax colors */
-  --md-code-hl-number-color: #005cc5;
-  --md-code-hl-special-color: #e36209;
-  --md-code-hl-function-color: #6f42c1;
-  --md-code-hl-constant-color: #005cc5;
-  --md-code-hl-keyword-color: #d73a49;
-  --md-code-hl-string-color: #032f62;
-  --md-code-hl-name-color: #24292e;
-  --md-code-hl-operator-color: #d73a49;
-  --md-code-hl-punctuation-color: #24292e;
-  --md-code-hl-comment-color: #6a737d;
-  --md-code-hl-generic-color: #24292e;
-  --md-code-hl-variable-color: #e36209;
+  --md-code-fg-color: #111;
+  --md-code-bg-color: #f6f6f6;
 }
 
-/* Dark mode syntax highlighting (already good, but ensure consistency) */
+/* Dark mode */
 [data-md-color-scheme="slate"] {
   --md-code-fg-color: #e6edf3;
   --md-code-bg-color: #0d1117;
-
-  --md-code-hl-number-color: #79c0ff;
-  --md-code-hl-special-color: #ffa657;
-  --md-code-hl-function-color: #d2a8ff;
-  --md-code-hl-constant-color: #79c0ff;
-  --md-code-hl-keyword-color: #ff7b72;
-  --md-code-hl-string-color: #a5d6ff;
-  --md-code-hl-name-color: #e6edf3;
-  --md-code-hl-operator-color: #ff7b72;
-  --md-code-hl-punctuation-color: #e6edf3;
-  --md-code-hl-comment-color: #8b949e;
-  --md-code-hl-generic-color: #e6edf3;
-  --md-code-hl-variable-color: #ffa657;
 }
 
-/* Better code block appearance */
-.highlight pre {
-  border-radius: 0.2rem;
+/* -----------------------------------------------------------
+   ✅ CODE BLOCKS
+   ----------------------------------------------------------- */
+
+.highlight pre,
+code {
+  border-radius: 6px !important;
 }
 
-/* Fix inline code in light mode */
-[data-md-color-scheme="default"] .md-typeset code {
-  background-color: #f6f8fa;
-  color: #24292e;
-  border: 1px solid #d0d7de;
+.md-typeset code {
+  padding: .15rem .35rem;
+  border-radius: 4px;
 }
 
-/* Ensure proper spacing for footer */
-.md-footer-meta {
-  background-color: var(--md-footer-bg-color);
-}
+/* -----------------------------------------------------------
+   ✅ PAGE / FOOTER
+   ----------------------------------------------------------- */
 
-/* Fix content max-width to prevent footer issues */
 .md-content {
-  max-width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
 }
+
+.md-content__inner {
+  padding-bottom: 4rem;
+}
+
+.md-footer {
+  background: #000;
+  color: white;
+}
+

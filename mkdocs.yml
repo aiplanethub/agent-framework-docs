@@ -2,33 +2,37 @@ site_name: Agent Workflow Framework
 site_description: Enterprise-grade agent orchestration framework
 site_author: AI Planet
 site_url: https://aiplanet.com/agent-framework
+
 repo_url: https://dev.azure.com/AIPlanetFramework/agent_framework
 repo_name: AIPlanetFramework/agent_framework
 edit_uri: ""
 
 theme:
   name: material
-  language: en
+  logo: assets/aiplanet_logo.png
+  favicon: assets/aiplanet_logo.png
+
   palette:
-    # Light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: black        # ✅ Classic white / black
+      accent: grey
       toggle:
-        icon: material/brightness-7
+        icon: material/weather-night
         name: Switch to dark mode
-    # Dark mode
+
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: black        # ✅ Still black in dark mode
+      accent: grey
       toggle:
-        icon: material/brightness-4
+        icon: material/weather-sunny
         name: Switch to light mode
+
   font:
     text: Roboto
     code: Roboto Mono
+
   features:
     - announce.dismiss
     - content.action.edit
@@ -43,8 +47,8 @@ theme:
     - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
-    - navigation.path
     - navigation.indexes
+    - navigation.path
     - navigation.top
     - navigation.footer
     - search.suggest
@@ -142,7 +146,8 @@ extra:
 extra_css:
   - stylesheets/extra.css
 
-copyright: Copyright &copy; 2025 AI Planet
+copyright: >
+  Copyright © 2025 AI Planet
 
 nav:
   - Home: index.md
@@ -156,3 +161,4 @@ nav:
       - Working with Tools: guide/tools.md
   - API Reference: api.md
   - Examples: examples.md
+

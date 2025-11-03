@@ -21,18 +21,18 @@ A sophisticated agent workflow framework built on Microsoft's Agent Framework, o
 
 Install from Azure Artifacts:
 
-\`\`\`bash
-pip install agent-workflow-framework
-\`\`\`
+```python
+pip install --index-url "https://pkgs.dev.azure.com/AIPlanetFramework/agent_framework/_packaging/FEED/pypi/simple/" --extra-index-url "https://pypi.org/simple" agent_workflow
+```
 
 Create your first agent:
 
-\`\`\`python
+```sh
 from agent_workflow_framework import WorkflowEngine, create_assistant
 
 engine = WorkflowEngine()
 agent = create_assistant("my_assistant", description="A helpful assistant")
-\`\`\`
+```
 
 Check out the [Installation & Setup Guide](installation.md) for detailed instructions.
 

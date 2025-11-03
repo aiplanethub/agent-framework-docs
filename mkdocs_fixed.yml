@@ -9,6 +9,8 @@ edit_uri: ""
 theme:
   name: material
   language: en
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
   palette:
     # Light mode
     - media: "(prefers-color-scheme: light)"
@@ -156,3 +158,4 @@ nav:
       - Working with Tools: guide/tools.md
   - API Reference: api.md
   - Examples: examples.md
+
