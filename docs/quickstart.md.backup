@@ -1,0 +1,867 @@
+# Quick Start
+
+Get up and running with the Agent Workflow Framework in 5 minutes.
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+-  **Python 3.10 or higher** installed
+-  **Azure OpenAI resource** (or OpenAI API key)
+-  **Framework installed** - See [Installation Guide](installation.md)
+-  **Azure CLI** installed (for Azure authentication)
+
+## Your First Agent in 3 Steps
+
+### Step 1: Setup Environment
+
+First, authenticate with Azure (if using Azure OpenAI):
+
+```bash
+# Login to Azure
+az login
+
+# Set your subscription
+az account set --subscription **your-subscription-id>
+```
+
+Create a `.env` file in your project directory:
+
+```bash
+# Create .env file
+cat > .env **** 'EOF'
+# Azure AI Configuration (recommended)
+AZURE_AI_PROJECT_ENDPOINT=https://your-resource.openai.azure.com/
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+
+# OR OpenAI Configuration (alternative)
+# OPENAI_API_KEY=your-api-key-here
+# LLM_MODEL=gpt-4o-mini
+EOF
+```
+
+!!! tip "Getting Your Azure Values"
+ 1. Go to [Azure Portal](https://portal.azure.com)
+ 2. Navigate to your **Azure OpenAI** resource
+ 3. Click **Keys and Endpoint** in the left menu
+ 4. Copy the **Endpoint** URL
+ 5. Go to **Deployments** and copy your **Deployment name**
+
+### Step 2: Write Your First Agent
+
+Create a file called `first_agent.py`:
+
+```python
+import asyncio
+import os
+from dotenv import load_dotenv
+from agent_framework import ChatAgent
+from agent_framework.azure import AzureAIAgentClient
+from azure.identity.aio import AzureCliCredential
+
+# Load environment variables from .env file
+load_dotenv()
+
+async def main():
+ """Run your first agent"""
+
+ # 1. Create Azure OpenAI client
+ # This automatically uses your Azure CLI credentials
+ client = AzureAIAgentClient(
+ async_credential=AzureCliCredential(),
+ endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
+ deployment_name=os.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME")
+ )
+
+ # 2. Create an AI agent
+ agent = ChatAgent(
+ chat_client=client,
+ name="my-first-agent",
+ instructions="You are a helpful assistant that provides concise, clear answers.",
+ temperature=0.7 # Controls randomness (0.0 = focused, 1.0 = creative)
+ )
+
+ # 3. Run the agent with a query
+ print("Asking agent: What is Python?\n")
+ response = await agent.run("What is Python?")
+
+ # 4. Display the response
+ print("Agent Response:")
+ print("=" * 60)
+ print(response.text)
+ print("=" * 60)
+
+if __name__ == "__main__":
+ asyncio.run(main())
+```
+
+### Step 3: Run It
+
+```bash
+python first_agent.py
+```
+
+**Expected Output:**
+
+```
+Asking agent: What is Python?
+
+Agent Response:
+============================================================
+Python is a high-level, interpreted programming language known
+for its simplicity and readability. It's widely used for web
+development, data analysis, automation, artificial intelligence,
+and scientific computing. Python's clean syntax makes it an
+excellent choice for beginners while being powerful enough for
+complex applications.
+============================================================
+```
+
+**‰ **Congratulations!** You've just created and run your first AI agent!
+
+---
+
+## What Just Happened?
+
+Let's break down what your code did:
+
+1. **Created an Azure client** - Connects to Azure OpenAI using your credentials
+2. **Initialized a ChatAgent** - The "brain" that uses the LLM
+3. **Sent a message** - Your query to the agent
+4. **Received a response** - The agent's AI-generated answer
+
+```
+Your Code ’ ChatAgent ’ Azure OpenAI (LLM) ’ AI Response ’ Your Code
+```
+
+---
+
+## Next: Add a Tool to Your Agent
+
+Let's make your agent more powerful by adding a **calculator tool**. Tools let agents perform actions beyond text generation.
+
+### Create an Agent with Tools
+
+Create `agent_with_tools.py`:
+
+```python
+import asyncio
+import os
+from dotenv import load_dotenv
+from agent_framework import ChatAgent, ai_function
+from agent_framework.azure import AzureAIAgentClient
+from azure.identity.aio import AzureCliCredential
+from typing import Annotated
+from pydantic import Field
+
+# Load environment
+load_dotenv()
+
+# ===== STEP 1: Define a Tool =====
+# The @ai_function decorator turns a Python function into an AI-callable tool
+
+@ai_function
+def calculator(
+ operation: Annotated[str, Field(description="The math operation: add, subtract, multiply, or divide")],
+ a: Annotated[float, Field(description="First number")],
+ b: Annotated[float, Field(description="Second number")]
+) -> str:
+ """
+ Performs basic mathematical operations.
+ Use this tool when the user asks you to calculate or compute mathematical expressions.
+ """
+ operations = {
+ "add": a + b,
+ "subtract": a - b,
+ "multiply": a * b,
+ "divide": a / b if b != 0 else "Error: Division by zero"
+ }
+
+ result = operations.get(operation, "Unknown operation")
+ return f"{a} {operation} {b} = {result}"
+
+async def main():
+ # Create client
+ client = AzureAIAgentClient(
+ async_credential=AzureCliCredential(),
+ endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
+ deployment_name=os.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME")
+ )
+
+ # ===== STEP 2: Create Agent with Tool =====
+ # Pass the tool to the agent's tools parameter
+ agent = ChatAgent(
+ chat_client=client,
+ name="calculator-agent",
+ instructions="You are a helpful math assistant. Use the calculator tool for any math operations the user requests.",
+ tools=[calculator], # =H Add the tool here
+ temperature=0.7
+ )
+
+ # ===== STEP 3: Test the Agent =====
+ print("Asking agent: What is 234 multiplied by 567?\n")
+ response = await agent.run("What is 234 multiplied by 567?")
+
+ print("Agent Response:")
+ print("=" * 60)
+ print(response.text)
+ print("=" * 60)
+
+if __name__ == "__main__":
+ asyncio.run(main())
+```
+
+### Run It
+
+```bash
+python agent_with_tools.py
+```
+
+**Expected Output:**
+
+```
+Asking agent: What is 234 multiplied by 567?
+
+Agent Response:
+============================================================
+I'll calculate that for you.
+
+234 multiplied by 567 equals 132,678.
+============================================================
+```
+
+### What Happened Behind the Scenes?
+
+```
+1. User asks: "What is 234 multiplied by 567?"
+ “
+2. Agent decides: "I need the calculator tool"
+ “
+3. Agent calls: calculator("multiply", 234, 567)
+ “
+4. Tool executes: Returns "234 multiply 567 = 132678"
+ “
+5. Agent responds: Formats the result naturally
+```
+
+The agent **automatically decided** to use the tool, called it with the correct parameters, and presented the result in natural language!
+
+---
+
+## Understanding Tools
+
+### Anatomy of an AI Function
+
+```python
+@ai_function # 1. Decorator makes it AI-callable
+def tool_name( # 2. Clear, descriptive name
+ param: Annotated[type, Field(description="What this parameter is")] # 3. Annotated parameters
+) -> return_type: # 4. Return type
+ """
+ Detailed description of what this tool does. # 5. Docstring (critical!)
+ The LLM uses this to decide when to call the tool.
+ """
+ # 6. Implementation
+ return result
+```
+
+**Key Points:**
+
+1. **Decorator** - `@ai_function` registers it with the framework
+2. **Function name** - Should clearly indicate what it does
+3. **Annotated parameters** - `Annotated[type, Field(description="...")]` tells the LLM what to pass
+4. **Return type** - Defines what the tool returns
+5. **Docstring** - Most important! The LLM reads this to decide when to use the tool
+6. **Implementation** - Your actual Python logic
+
+### Tool Design Best Practices
+
+ **Good Tool:**
+```python
+@ai_function
+def get_weather(
+ city: Annotated[str, Field(description="The city name, e.g., 'London', 'New York'")]
+) -> str:
+ """
+ Gets current weather information for a specific city.
+ Use this when the user asks about weather, temperature, or current conditions.
+ Returns temperature and weather description.
+ """
+ # Implementation
+ return f"Weather in {city}: Sunny, 22°C"
+```
+
+L **Bad Tool:**
+```python
+@ai_function
+def weather(city: str) -> str:
+ """Weather."""
+ return f"{city}: Sunny"
+```
+
+**Why the first is better:**
+- Clear parameter description with examples
+- Detailed docstring explaining when to use it
+- Explicit about what it returns
+
+---
+
+## Creating a Multi-Tool Agent
+
+Let's create an agent with **multiple tools** for different tasks:
+
+```python
+import asyncio
+import os
+from dotenv import load_dotenv
+from agent_framework import ChatAgent, ai_function
+from agent_framework.azure import AzureAIAgentClient
+from azure.identity.aio import AzureCliCredential
+from typing import Annotated
+from pydantic import Field
+
+load_dotenv()
+
+# ===== Define Multiple Tools =====
+
+@ai_function
+def calculator(
+ operation: Annotated[str, Field(description="Operation: add, subtract, multiply, divide")],
+ a: Annotated[float, Field(description="First number")],
+ b: Annotated[float, Field(description="Second number")]
+) -> str:
+ """Performs mathematical calculations. Use for any math operations."""
+ operations = {
+ "add": a + b,
+ "subtract": a - b,
+ "multiply": a * b,
+ "divide": a / b if b != 0 else "Error: Division by zero"
+ }
+ result = operations.get(operation, "Unknown operation")
+ return f"{a} {operation} {b} = {result}"
+
+@ai_function
+def get_weather(
+ city: Annotated[str, Field(description="City name")]
+) -> str:
+ """
+ Gets current weather for a city.
+ Use when user asks about weather or temperature.
+ """
+ # Mock weather data - in production, call a real weather API
+ weather_data = {
+ "london": "Cloudy, 15°C",
+ "new york": "Sunny, 22°C",
+ "tokyo": "Rainy, 18°C",
+ "paris": "Partly cloudy, 17°C"
+ }
+
+ city_lower = city.lower()
+ weather = weather_data.get(city_lower, f"Weather data not available for {city}")
+ return f"Current weather in {city}: {weather}"
+
+@ai_function
+def convert_currency(
+ amount: Annotated[float, Field(description="Amount to convert")],
+ from_currency: Annotated[str, Field(description="Source currency code (USD, EUR, GBP)")],
+ to_currency: Annotated[str, Field(description="Target currency code (USD, EUR, GBP)")]
+) -> str:
+ """
+ Converts currency amounts between different currencies.
+ Use when user asks to convert money or currency.
+ """
+ # Mock exchange rates - in production, call a real currency API
+ rates = {
+ ("USD", "EUR"): 0.85,
+ ("USD", "GBP"): 0.73,
+ ("EUR", "USD"): 1.18,
+ ("EUR", "GBP"): 0.86,
+ ("GBP", "USD"): 1.37,
+ ("GBP", "EUR"): 1.16,
+ }
+
+ if from_currency == to_currency:
+ return f"{amount} {from_currency} = {amount} {to_currency}"
+
+ rate = rates.get((from_currency.upper(), to_currency.upper()))
+ if rate is None:
+ return f"Currency conversion not supported for {from_currency} to {to_currency}"
+
+ converted = amount * rate
+ return f"{amount} {from_currency} = {converted:.2f} {to_currency}"
+
+async def main():
+ # Create client
+ client = AzureAIAgentClient(
+ async_credential=AzureCliCredential(),
+ endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
+ deployment_name=os.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME")
+ )
+
+ # ===== Create Agent with Multiple Tools =====
+ agent = ChatAgent(
+ chat_client=client,
+ name="multi-tool-agent",
+ instructions="""You are a helpful assistant with access to several tools:
+
+- calculator: For mathematical operations
+- get_weather: For weather information
+- convert_currency: For currency conversions
+
+Use the appropriate tool based on what the user asks. Be conversational and friendly.""",
+ tools=[calculator, get_weather, convert_currency], # =H All three tools
+ temperature=0.7
+ )
+
+ # ===== Test Different Queries =====
+ queries = [
+ "What's the weather in London?",
+ "Calculate 145 plus 289",
+ "Convert 100 USD to EUR"
+ ]
+
+ for query in queries:
+ print(f"\nQuery: {query}")
+ print("-" * 60)
+ response = await agent.run(query)
+ print(f"Response: {response.text}\n")
+
+if __name__ == "__main__":
+ asyncio.run(main())
+```
+
+**Expected Output:**
+
+```
+Query: What's the weather in London?
+------------------------------------------------------------
+Response: The current weather in London is cloudy with a temperature of 15°C.
+
+Query: Calculate 145 plus 289
+------------------------------------------------------------
+Response: 145 plus 289 equals 434.
+
+Query: Convert 100 USD to EUR
+------------------------------------------------------------
+Response: 100 USD is equal to 85.00 EUR.
+```
+
+---
+
+## Conversation with Memory
+
+By default, each `agent.run()` call is independent. To create a **conversation with memory**, use threads:
+
+```python
+import asyncio
+import os
+from dotenv import load_dotenv
+from agent_framework import ChatAgent
+from agent_framework.azure import AzureAIAgentClient
+from azure.identity.aio import AzureCliCredential
+
+load_dotenv()
+
+async def main():
+ # Create client
+ client = AzureAIAgentClient(
+ async_credential=AzureCliCredential(),
+ endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
+ deployment_name=os.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME")
+ )
+
+ # Create agent
+ agent = ChatAgent(
+ chat_client=client,
+ name="conversational-agent",
+ instructions="You are a friendly assistant. Remember the conversation context.",
+ temperature=0.7
+ )
+
+ # ===== Create a Thread for Conversation History =====
+ thread = agent.get_new_thread()
+
+ # ===== Multi-turn Conversation =====
+ print("Starting conversation...\n")
+
+ # Turn 1
+ response1 = await agent.run("My name is Alice", thread=thread)
+ print(f"User: My name is Alice")
+ print(f"Agent: {response1.text}\n")
+
+ # Turn 2 - Agent remembers Alice from previous message
+ response2 = await agent.run("What's my name?", thread=thread)
+ print(f"User: What's my name?")
+ print(f"Agent: {response2.text}\n")
+
+ # Turn 3
+ response3 = await agent.run("What did I tell you in my first message?", thread=thread)
+ print(f"User: What did I tell you in my first message?")
+ print(f"Agent: {response3.text}\n")
+
+if __name__ == "__main__":
+ asyncio.run(main())
+```
+
+**Expected Output:**
+
+```
+Starting conversation...
+
+User: My name is Alice
+Agent: Nice to meet you, Alice! How can I help you today?
+
+User: What's my name?
+Agent: Your name is Alice.
+
+User: What did I tell you in my first message?
+Agent: In your first message, you told me that your name is Alice.
+```
+
+**Key Points:**
+
+- **Thread** = Conversation history storage
+- **Without thread**: Each message is independent (agent has no memory)
+- **With thread**: Agent remembers previous messages in the conversation
+
+---
+
+## Streaming Responses
+
+For long responses, use streaming to display text as it's generated:
+
+```python
+import asyncio
+import os
+from dotenv import load_dotenv
+from agent_framework import ChatAgent
+from agent_framework.azure import AzureAIAgentClient
+from azure.identity.aio import AzureCliCredential
+
+load_dotenv()
+
+async def main():
+ # Create client
+ client = AzureAIAgentClient(
+ async_credential=AzureCliCredential(),
+ endpoint=os.getenv("AZURE_AI_PROJECT_ENDPOINT"),
+ deployment_name=os.getenv("AZURE_AI_MODEL_DEPLOYMENT_NAME")
+ )
+
+ # Create agent
+ agent = ChatAgent(
+ chat_client=client,
+ name="streaming-agent",
+ instructions="You are a helpful assistant.",
+ temperature=0.7
+ )
+
+ # ===== Stream the Response =====
+ print("Question: Write a short story about a robot.\n")
+ print("Agent Response (streaming):")
+ print("-" * 60)
+
+ async for update in agent.run_stream("Write a short story about a robot."):
+ # Print each chunk as it arrives
+ print(update.text, end="", flush=True)
+
+ print("\n" + "-" * 60)
+
+if __name__ == "__main__":
+ asyncio.run(main())
+```
+
+**Output:**
+
+```
+Question: Write a short story about a robot.
+
+Agent Response (streaming):
+------------------------------------------------------------
+In a small workshop, a robot named Circuit came to life.
+Unlike other robots, Circuit had a peculiar fascination
+with flowers. Each morning, it would water the garden,
+carefully examining each petal and leaf...
+------------------------------------------------------------
+```
+
+The text appears **word by word** as the LLM generates it, instead of waiting for the complete response.
+
+---
+
+## Troubleshooting
+
+### Issue: "AzureCliCredential authentication failed"
+
+**Cause:** Not logged into Azure CLI
+
+**Solution:**
+```bash
+# Login to Azure
+az login
+
+# Verify login
+az account show
+
+# Set subscription
+az account set --subscription **your-subscription-id>
+```
+
+---
+
+### Issue: "Environment variable AZURE_AI_PROJECT_ENDPOINT not found"
+
+**Cause:** Missing or incorrect `.env` file
+
+**Solution:**
+
+1. Verify `.env` file exists in your project directory:
+```bash
+ls -la .env
+```
+
+2. Check contents:
+```bash
+cat .env
+```
+
+3. Ensure it has the correct values:
+```
+AZURE_AI_PROJECT_ENDPOINT=https://your-resource.openai.azure.com/
+AZURE_AI_MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+```
+
+4. Make sure `load_dotenv()` is called in your code:
+```python
+from dotenv import load_dotenv
+load_dotenv() # =H Must be called before accessing os.getenv()
+```
+
+---
+
+### Issue: "Agent doesn't use the tool"
+
+**Cause:** Tool description not clear enough for the LLM
+
+**Solutions:**
+
+1. **Make the docstring more explicit:**
+
+L **Bad:**
+```python
+@ai_function
+def search(query: str) -> str:
+ """Search."""
+ pass
+```
+
+ **Good:**
+```python
+@ai_function
+def web_search(
+ query: Annotated[str, Field(description="Precise search query with keywords")]
+) -> str:
+ """
+ Searches the web using Google and returns top results.
+ Use this tool when the user asks for current information, facts, or
+ needs to find something online.
+ """
+ pass
+```
+
+2. **Mention tools in agent instructions:**
+```python
+agent = ChatAgent(
+ chat_client=client,
+ instructions="You are a helpful assistant. When users ask about weather, use the get_weather tool.", # =H Explicit
+ tools=[get_weather]
+)
+```
+
+3. **Use specific parameter descriptions:**
+```python
+@ai_function
+def calculator(
+ operation: Annotated[str, Field(description="Must be one of: add, subtract, multiply, divide")], # =H Very specific
+ a: Annotated[float, Field(description="The first number in the calculation")],
+ b: Annotated[float, Field(description="The second number in the calculation")]
+) -> str:
+ """Performs mathematical calculations."""
+ pass
+```
+
+---
+
+### Issue: "ModuleNotFoundError: No module named 'agent_framework'"
+
+**Cause:** Framework not installed or wrong Python environment
+
+**Solution:**
+
+1. **Verify installation:**
+```bash
+python -c "import agent_framework; print(agent_framework.__version__)"
+```
+
+2. **If not installed, follow [Installation Guide](installation.md)**
+
+3. **Check you're using the correct Python:**
+```bash
+which python
+python --version
+```
+
+4. **Reinstall if needed:**
+```bash
+pip install --index-url "https://pkgs.dev.azure.com/..." agent_workflow
+```
+
+---
+
+### Issue: "The agent takes too long to respond"
+
+**Cause:** Large model or complex query
+
+**Solutions:**
+
+1. **Use a faster model:**
+```python
+# Instead of gpt-4
+deployment_name="gpt-4o-mini" # Faster and cheaper
+```
+
+2. **Reduce temperature for more focused responses:**
+```python
+agent = ChatAgent(
+ chat_client=client,
+ temperature=0.3, # Lower = faster, more focused
+ max_tokens=500 # Limit response length
+)
+```
+
+3. **Use streaming for better UX:**
+```python
+async for update in agent.run_stream(query):
+ print(update.text, end="", flush=True)
+```
+
+---
+
+## Next Steps
+
+Now that you've built your first agents and tools, explore more:
+
+### =Ú Learn Core Concepts
+
+- **[Core Concepts](guide/concepts.md)** - Understand the framework architecture
+- **[Working with Tools](guide/tools.md)** - Create more sophisticated tools
+- **[Creating Agents](guide/agents.md)** - Build specialized agents
+- **[Building Workflows](guide/workflows.md)** - Orchestrate multiple agents
+
+### **¯ See Real Examples
+
+- **[Examples](examples.md)** - Complete, production-ready examples
+ - Fraud Detection Workflow (comprehensive multi-agent system)
+ - Simple agent patterns
+ - Multi-agent collaboration
+
+### =Ö Reference Documentation
+
+- **[API Reference](api.md)** - Complete API documentation
+- **[Installation Guide](installation.md)** - Detailed setup instructions
+
+### =€ Build Something
+
+Try these progressive challenges:
+
+1. **Beginner**: Create a weather agent that answers questions about multiple cities
+2. **Intermediate**: Build a research agent that searches the web and summarizes findings
+3. **Advanced**: Create a multi-agent workflow with specialist agents for different tasks
+
+---
+
+## Example Projects to Try
+
+### 1. Personal Assistant Agent
+
+Create an agent that can:
+- Check weather
+- Set reminders (save to file)
+- Perform calculations
+- Answer general questions
+
+### 2. Code Helper Agent
+
+Build an agent with tools to:
+- Search Python documentation
+- Explain code snippets
+- Suggest fixes for common errors
+
+### 3. Data Analysis Agent
+
+Create an agent that can:
+- Read CSV files
+- Calculate statistics
+- Generate summary reports
+- Create visualizations
+
+---
+
+## Get Help
+
+Need assistance?
+
+- =¬ **[GitHub Discussions](https://github.com/microsoft/agent-framework/discussions)** - Ask questions
+- = **[Report Issues](https://github.com/microsoft/agent-framework/issues)** - Found a bug?
+- =Ö **[Full Documentation](index.md)** - Comprehensive guides
+- **“ **[Examples](examples.md)** - Learn from complete examples
+
+---
+
+## Quick Reference
+
+### Essential Code Patterns
+
+**Create an agent:**
+```python
+agent = ChatAgent(
+ chat_client=client,
+ name="agent-name",
+ instructions="Agent purpose and behavior",
+ tools=[tool1, tool2], # Optional
+ temperature=0.7
+)
+```
+
+**Run an agent:**
+```python
+response = await agent.run("Your query")
+print(response.text)
+```
+
+**Create a tool:**
+```python
+@ai_function
+def tool_name(
+ param: Annotated[type, Field(description="Description")]
+) -> return_type:
+ """What this tool does."""
+ return result
+```
+
+**Conversation with memory:**
+```python
+thread = agent.get_new_thread()
+response1 = await agent.run("First message", thread=thread)
+response2 = await agent.run("Second message", thread=thread)
+```
+
+**Stream responses:**
+```python
+async for update in agent.run_stream("Long query"):
+ print(update.text, end="", flush=True)
+```
+
+---
+
+*Ready to build? Start with the [Core Concepts](guide/concepts.md) to understand the framework architecture!*
