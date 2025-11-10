@@ -1,89 +1,629 @@
-/* -----------------------------------------------------------
-   ✅ HEADER / NAV — Classic White / Black
-   ----------------------------------------------------------- */
+/* ============================================================
+   GITBOOK-STYLE CLEAN DOCUMENTATION
+   ============================================================ */
 
-.md-header {
-  background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  padding: 0.25rem 0;
+/* -----------------------------------------------------------
+   COLOR VARIABLES - AI Planet Style
+   ----------------------------------------------------------- */
+:root {
+  --primary-color: #22c55e;
+  --primary-hover: #16a34a;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border-color: #e5e7eb;
+  --bg-light: #f9fafb;
+  --bg-white: #ffffff;
+  --code-bg: #f8f9fa;
+  --sidebar-width: 260px;
+  --accent-color: #5850ec;
 }
 
-.md-header__button.md-logo {
-  margin-right: .35rem !important;
+[data-md-color-scheme="slate"] {
+  --primary-color: #22c55e;
+  --primary-hover: #16a34a;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --border-color: #374151;
+  --bg-light: #1f2937;
+  --bg-white: #111827;
+  --code-bg: #1e293b;
+  --accent-color: #818cf8;
+}
+
+/* -----------------------------------------------------------
+   HEADER - Clean minimal header
+   ----------------------------------------------------------- */
+.md-header {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  height: 4rem;
 }
 
 .md-header__title {
-  font-weight: 700;
-  color: #000 !important;
-}
-
-/* Tabs navigation */
-.md-tabs__item {
+  font-size: 1rem;
   font-weight: 500;
-  font-size: .9rem;
-  border-radius: 4px;
-  transition: background .25s;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
 }
 
-.md-tabs__item:hover {
-  background: rgba(0,0,0,0.07);
+.md-header__button.md-logo img {
+  height: 36px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
 }
 
-.md-tabs__item--active {
-  border-bottom: 2px solid #000; /* Black active indicator */
-}
-
-/* -----------------------------------------------------------
-   ✅ GLOBAL COLOR VARIABLES (White + Black)
-   ----------------------------------------------------------- */
-
-:root {
-  --md-primary-fg-color: #000; /* Black */
-  --md-primary-fg-color--light: #222;
-  --md-primary-fg-color--dark: #000;
-}
-
-/* Light mode */
-[data-md-color-scheme="default"] {
-  --md-code-fg-color: #111;
-  --md-code-bg-color: #f6f6f6;
-}
-
-/* Dark mode */
-[data-md-color-scheme="slate"] {
-  --md-code-fg-color: #e6edf3;
-  --md-code-bg-color: #0d1117;
+.md-logo {
+  padding: 0.4rem 0.8rem;
+  margin-right: 0.5rem;
 }
 
 /* -----------------------------------------------------------
-   ✅ CODE BLOCKS
+   SIDEBAR NAVIGATION - Clean & Modern
    ----------------------------------------------------------- */
-
-.highlight pre,
-code {
-  border-radius: 6px !important;
+.md-sidebar {
+  width: 260px;
 }
 
-.md-typeset code {
-  padding: .15rem .35rem;
-  border-radius: 4px;
+.md-sidebar--primary {
+  background: var(--bg-white);
+  border-right: 1px solid var(--border-color);
+  top: 4rem;
+}
+
+.md-sidebar__scrollwrap {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+  padding: 1rem 0;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar {
+  width: 4px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 2px;
+}
+
+.md-sidebar__scrollwrap::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.md-nav {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Hide default navigation title */
+.md-nav__title {
+  display: none;
+}
+
+/* Section headers (Quickstart, Core Concepts, etc.) */
+.md-nav__item--section > .md-nav__link {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  padding: 0.75rem 1rem 0.5rem;
+  margin: 1.25rem 0 0.5rem;
+  cursor: default;
+  pointer-events: none;
+}
+
+.md-nav__item--section:first-child > .md-nav__link {
+  margin-top: 0;
+}
+
+/* Regular navigation items */
+.md-nav__item {
+  padding: 0;
+  margin: 0;
+}
+
+.md-nav__link {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  margin: 0.125rem 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.md-nav__link:hover {
+  background: var(--bg-light);
+  color: var(--text-primary);
+}
+
+.md-nav__link--active {
+  background: rgba(34, 197, 94, 0.08);
+  color: var(--primary-color);
+  font-weight: 600;
+  border-left: 3px solid var(--primary-color);
+  padding-left: calc(1rem - 3px);
+}
+
+/* Nested navigation - sub-items */
+.md-nav--secondary .md-nav__link,
+.md-nav__item--nested .md-nav__link {
+  padding-left: 2rem;
+  font-size: 0.8125rem;
+}
+
+/* Remove toggle icons for cleaner look */
+.md-nav__icon {
+  display: none;
 }
 
 /* -----------------------------------------------------------
-   ✅ PAGE / FOOTER
+   MAIN CONTENT - Clean and readable
    ----------------------------------------------------------- */
-
 .md-content {
-  max-width: 1080px;
-  margin: 0 auto;
+  max-width: 900px;
 }
 
 .md-content__inner {
-  padding-bottom: 4rem;
+  padding: 2rem 2.5rem 4rem;
 }
 
+.md-typeset {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+}
+
+.md-typeset h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+  margin-top: 0;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.md-typeset h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.md-typeset h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.md-typeset p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.md-typeset a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.md-typeset a:hover {
+  text-decoration: underline;
+}
+
+/* -----------------------------------------------------------
+   CODE BLOCKS - Clean syntax highlighting
+   ----------------------------------------------------------- */
+.md-typeset code {
+  background: var(--code-bg);
+  color: #e83e8c;
+  padding: 0.15em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+.md-typeset pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.md-typeset pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+/* Code copy button */
+.md-clipboard {
+  color: var(--text-secondary);
+  top: 0.75rem;
+  right: 0.75rem;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.md-clipboard:hover {
+  color: var(--text-primary);
+  opacity: 1;
+}
+
+/* -----------------------------------------------------------
+   ADMONITIONS - Clean info boxes
+   ----------------------------------------------------------- */
+.md-typeset .admonition {
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0.375rem;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  background: var(--bg-light);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.md-typeset .admonition-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.md-typeset .admonition.note {
+  border-left-color: #3b82f6;
+}
+
+.md-typeset .admonition.warning {
+  border-left-color: #f59e0b;
+}
+
+.md-typeset .admonition.danger {
+  border-left-color: #ef4444;
+}
+
+.md-typeset .admonition.tip {
+  border-left-color: var(--primary-color);
+}
+
+/* -----------------------------------------------------------
+   TABLE OF CONTENTS - Right sidebar
+   ----------------------------------------------------------- */
+.md-sidebar--secondary {
+  width: 200px;
+}
+
+.md-sidebar--secondary .md-sidebar__scrollwrap {
+  padding-top: 1.5rem;
+}
+
+.md-nav--secondary .md-nav__title {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem 0.75rem;
+  display: block;
+}
+
+.md-nav--secondary .md-nav__list {
+  padding: 0;
+}
+
+.md-nav--secondary .md-nav__link {
+  font-size: 0.8125rem;
+  padding: 0.375rem 1rem;
+  color: var(--text-secondary);
+  border-left: 2px solid transparent;
+  margin: 0;
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.md-nav--secondary .md-nav__link:hover {
+  color: var(--text-primary);
+  background: transparent;
+  border-left-color: var(--border-color);
+}
+
+.md-nav--secondary .md-nav__link--active {
+  color: var(--primary-color);
+  border-left-color: var(--primary-color);
+  background: transparent;
+  font-weight: 500;
+}
+
+/* -----------------------------------------------------------
+   LISTS - Better spacing and styling
+   ----------------------------------------------------------- */
+.md-typeset ul,
+.md-typeset ol {
+  margin: 1.25rem 0;
+  padding-left: 1.5rem;
+}
+
+.md-typeset li {
+  margin: 0.5rem 0;
+  color: var(--text-secondary);
+}
+
+.md-typeset li > p {
+  margin: 0.25rem 0;
+}
+
+/* -----------------------------------------------------------
+   SEARCH - Clean search box
+   ----------------------------------------------------------- */
+.md-search__form {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  box-shadow: none;
+}
+
+.md-search__input {
+  background: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+}
+
+.md-search__input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.md-search__input:focus {
+  background: transparent;
+}
+
+.md-search__form:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+/* -----------------------------------------------------------
+   FOOTER - Minimal footer
+   ----------------------------------------------------------- */
 .md-footer {
-  background: #000;
-  color: white;
+  background: var(--bg-white);
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.md-footer-meta {
+  background: transparent;
+}
+
+.md-footer__inner {
+  padding: 0.5rem;
+}
+
+.md-footer__link {
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.md-footer__link:hover {
+  color: var(--primary-color);
+}
+
+/* -----------------------------------------------------------
+   TABLES - Clean table styling
+   ----------------------------------------------------------- */
+.md-typeset table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+.md-typeset table thead {
+  background: var(--bg-light);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.md-typeset table th {
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: var(--text-primary);
+}
+
+.md-typeset table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+/* -----------------------------------------------------------
+   MOBILE RESPONSIVE
+   ----------------------------------------------------------- */
+@media screen and (max-width: 76.1875em) {
+  .md-sidebar--primary {
+    border-right: none;
+  }
+}
+
+/* -----------------------------------------------------------
+   SMOOTH SCROLLING
+   ----------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* -----------------------------------------------------------
+   SECTION DIVIDERS
+   ----------------------------------------------------------- */
+.md-typeset hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 2rem 0;
+}
+
+/* -----------------------------------------------------------
+   ENHANCED NAVIGATION ITEMS
+   ----------------------------------------------------------- */
+.md-nav__item--nested > .md-nav__link {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.md-nav__item--active > .md-nav__link {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.md-nav__item .md-nav__item--active {
+  border-left: 2px solid var(--primary-color);
+  padding-left: 0.5rem;
+}
+
+/* -----------------------------------------------------------
+   HEADER BRANDING
+   ----------------------------------------------------------- */
+.md-header__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* -----------------------------------------------------------
+   IMPROVED READABILITY
+   ----------------------------------------------------------- */
+.md-typeset p code,
+.md-typeset li code {
+  font-weight: 600;
+}
+
+.md-typeset strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* -----------------------------------------------------------
+   BADGE STYLING (for version badges, etc.)
+   ----------------------------------------------------------- */
+.md-typeset .badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  border-radius: 0.375rem;
+  background: var(--bg-light);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+/* -----------------------------------------------------------
+   CONTENT CONTAINER
+   ----------------------------------------------------------- */
+.md-main__inner {
+  margin-top: 0;
+}
+
+.md-content {
+  padding-top: 1.5rem;
+}
+
+/* -----------------------------------------------------------
+   NAVIGATION SECTIONS SPACING
+   ----------------------------------------------------------- */
+.md-nav__item--section {
+  margin-top: 1.5rem;
+}
+
+.md-nav__item--section:first-child {
+  margin-top: 0;
+}
+
+/* -----------------------------------------------------------
+   ADDITIONAL UI POLISH
+   ----------------------------------------------------------- */
+
+/* Better button styling */
+.md-button {
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.md-button--primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.md-button--primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Improve link styling */
+.md-typeset a:not([class]) {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.md-typeset a:not([class]):hover {
+  border-bottom-color: var(--primary-color);
+  text-decoration: none;
+}
+
+/* Better focus states */
+*:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+.md-nav__link,
+.md-search__form,
+.md-clipboard,
+.md-footer__link {
+  transition: all 0.2s ease;
+}
+
+/* Content max-width for better readability */
+.md-content__inner {
+  max-width: 850px;
+}
+
+/* Improve horizontal rules */
+.md-typeset hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-color), transparent);
+  margin: 2.5rem 0;
 }
 

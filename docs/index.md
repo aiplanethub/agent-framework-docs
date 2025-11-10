@@ -1,38 +1,111 @@
-# Agent Workflow Framework
+# Introduction
 
-A sophisticated agent workflow framework built on Microsoft's Agent Framework, offering enterprise-grade orchestration with advanced RAG capabilities and comprehensive tool integration.
+Welcome to the **Agent Workflow Framework** documentation. This framework provides enterprise-grade agent orchestration built on Microsoft's Agent Framework, enabling you to create sophisticated AI workflows with ease.
 
-## Features
+---
 
-- **Advanced Agent Orchestration**: Built on Microsoft's latest Agent Framework
-- **Event-Driven Workflow Engine**: Sophisticated workflow execution with state management
-- **Azure-First Architecture**: First-class support for Azure OpenAI
-- **Enhanced Tool System**: Extensible tool framework with built-in enterprise tools
-- **Advanced RAG Integration**: Robust knowledge management with hybrid search capabilities
+## What is Agent Workflow Framework?
 
-## Quick Links
+The Agent Workflow Framework is a powerful Python library that allows you to:
 
-- [Installation & Setup](installation.md) - Get started with the framework
-- [Quick Start](quickstart.md) - Build your first agent in 5 minutes
-- [API Reference](api.md) - Complete API documentation
-- [Examples](examples.md) - Real-world usage examples
+- Build intelligent AI agents with custom tools and capabilities
+- Orchestrate complex multi-agent workflows
+- Integrate seamlessly with Azure OpenAI and OpenAI services
+- Create production-ready AI applications with minimal boilerplate
 
-## Getting Started
+---
 
-Install from Azure Artifacts:
+## Key Features
 
-```python
+**Advanced Agent Orchestration**
+Built on Microsoft's latest Agent Framework with sophisticated orchestration capabilities.
+
+**Event-Driven Workflows**
+Create complex workflows with state management and event-driven execution patterns.
+
+**Azure-First Architecture**
+First-class support for Azure OpenAI with seamless authentication and configuration.
+
+**Extensible Tool System**
+Easy-to-use decorator-based tool system for extending agent capabilities.
+
+**Enterprise Ready**
+Production-grade features including error handling, logging, and monitoring.
+
+---
+
+## Quick Start
+
+Install the framework:
+
+```bash
 pip install --index-url "https://pkgs.dev.azure.com/AIPlanetFramework/agent_framework/_packaging/FEED/pypi/simple/" --extra-index-url "https://pypi.org/simple" agent_workflow
 ```
 
 Create your first agent:
 
-```sh
-from agent_workflow_framework import WorkflowEngine, create_assistant
+```python
+from agent_framework import ChatAgent
+from agent_framework.azure import AzureAIAgentClient
+from azure.identity.aio import AzureCliCredential
 
-engine = WorkflowEngine()
-agent = create_assistant("my_assistant", description="A helpful assistant")
+# Create client
+client = AzureAIAgentClient(
+    async_credential=AzureCliCredential(),
+    endpoint="your-endpoint",
+    deployment_name="gpt-4o-mini"
+)
+
+# Create agent
+agent = ChatAgent(
+    chat_client=client,
+    name="my-agent",
+    instructions="You are a helpful assistant."
+)
+
+# Run agent
+response = await agent.run("Hello!")
+print(response.text)
 ```
 
-Check out the [Installation & Setup Guide](installation.md) for detailed instructions.
+---
+
+## Documentation Structure
+
+**QUICKSTART**
+Get up and running quickly with installation guides and starter tutorials.
+
+**CORE CONCEPTS**
+Understand the framework architecture, agents, tools, and workflows.
+
+**EXAMPLES**
+Explore real-world use cases and advanced implementation patterns.
+
+**API REFERENCE**
+Comprehensive API documentation for all framework components.
+
+---
+
+## Next Steps
+
+Ready to get started? Follow these steps:
+
+1. **[Installation & Setup](installation.md)** - Set up your development environment
+2. **[Starter Guide](quickstart.md)** - Build your first agent in 5 minutes
+3. **[Core Concepts](guide/concepts.md)** - Learn the framework fundamentals
+4. **[Examples](examples.md)** - Explore real-world implementations
+
+---
+
+## Support
+
+Need help? Here are some resources:
+
+- GitHub Discussions for questions and community support
+- Issue tracker for bug reports and feature requests
+- Complete API documentation and guides
+
+---
+
+*Let's build something amazing together.*
 

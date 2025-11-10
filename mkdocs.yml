@@ -9,29 +9,29 @@ edit_uri: ""
 
 theme:
   name: material
-  logo: assets/aiplanet_logo.png
+  logo: assets/logo.png
   favicon: assets/aiplanet_logo.png
 
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: black        # ✅ Classic white / black
-      accent: grey
+      primary: white
+      accent: indigo
       toggle:
-        icon: material/weather-night
+        icon: material/brightness-7
         name: Switch to dark mode
 
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: black        # ✅ Still black in dark mode
-      accent: grey
+      primary: black
+      accent: indigo
       toggle:
-        icon: material/weather-sunny
+        icon: material/brightness-4
         name: Switch to light mode
 
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Inter
+    code: JetBrains Mono
 
   features:
     - announce.dismiss
@@ -43,8 +43,6 @@ theme:
     - navigation.instant
     - navigation.instant.prefetch
     - navigation.tracking
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
     - navigation.indexes
@@ -55,6 +53,7 @@ theme:
     - search.highlight
     - search.share
     - toc.follow
+    - toc.integrate
 
 plugins:
   - search:
@@ -150,15 +149,22 @@ copyright: >
   Copyright © 2025 AI Planet
 
 nav:
-  - Home: index.md
-  - Getting Started:
+  - Introduction: index.md
+
+  - Quickstart:
       - Installation & Setup: installation.md
-      - Quick Start: quickstart.md
-  - User Guide:
-      - Core Concepts: guide/concepts.md
-      - Creating Agents: guide/agents.md
-      - Building Workflows: guide/workflows.md
-      - Working with Tools: guide/tools.md
-  - API Reference: api.md
-  - Examples: examples.md
+      - Starter Guide: quickstart.md
+
+  - Core Concepts:
+      - Overview: guide/concepts.md
+      - Agents: guide/agents.md
+      - Tools: guide/tools.md
+      - Workflows: guide/workflows.md
+
+  - Examples:
+      - Use Cases: examples.md
+      - Advanced Examples: examples-1.md
+
+  - API Reference:
+      - API Documentation: api.md
 
