@@ -39,7 +39,7 @@ Production-grade features including error handling, logging, and monitoring.
 Install the framework:
 
 ```bash
-pip install --index-url "https://pkgs.dev.azure.com/AIPlanetFramework/agent_framework/_packaging/FEED/pypi/simple/" --extra-index-url "https://pypi.org/simple" agent_workflow
+pip install --pre agent-workflow-framework --index-url https://pkgs.dev.azure.com/AIPlanetFramework/agent_framework/_packaging/FEED/pypi/simple/
 ```
 
 Create your first agent:
