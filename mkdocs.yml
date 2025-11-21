@@ -11,12 +11,13 @@ theme:
   name: material
   logo: assets/logo.png
   favicon: assets/aiplanet_logo.png
+  custom_dir: overrides
 
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: white
-      accent: indigo
+      accent: green
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
@@ -24,7 +25,7 @@ theme:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
-      accent: indigo
+      accent: green
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -34,9 +35,6 @@ theme:
     code: JetBrains Mono
 
   features:
-    - announce.dismiss
-    - content.action.edit
-    - content.action.view
     - content.code.copy
     - content.code.annotate
     - content.tooltips
@@ -46,14 +44,12 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.indexes
-    - navigation.path
     - navigation.top
     - navigation.footer
     - search.suggest
     - search.highlight
     - search.share
     - toc.follow
-    - toc.integrate
 
 plugins:
   - search:

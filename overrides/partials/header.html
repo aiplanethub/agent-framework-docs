@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  <style>
+    /* Custom header styling for GitBook look */
+    .md-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .md-header__button.md-logo {
+      margin-right: 0;
+    }
+
+    /* Home link styling */
+    .md-header__home-link {
+      margin-left: auto;
+      margin-right: 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--md-default-fg-color--light);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      transition: all 0.2s ease;
+    }
+
+    .md-header__home-link:hover {
+      background: var(--md-default-fg-color--lightest);
+      color: var(--md-primary-fg-color);
+    }
+
+    /* Search bar positioning */
+    .md-search {
+      margin-left: 0;
+    }
+
+    /* Adjust header spacing */
+    .md-header__title {
+      display: none;
+    }
+  </style>
+{% endblock %}
