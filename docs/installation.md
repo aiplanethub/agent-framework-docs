@@ -71,7 +71,7 @@ chmod 600 ~/.netrc
 Run the following command to install your private package:
 
 ```sh
-pip install --pre agent-workflow-framework             --index-url https://pkgs.dev.azure.com/AIPlanetFramework/agent_framework/_packaging/FEED/pypi/simple/
+pip install --pre agent-workflow-framework --index-url https://pkgs.dev.azure.com/AIPlanetFramework/agent_framework/_packaging/FEED/pypi/simple/
 ```
 
 - `--index-url` → Your private Azure Artifacts feed 
