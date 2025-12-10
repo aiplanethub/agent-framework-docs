@@ -1,6 +1,6 @@
 # API Reference
 
-Complete API documentation for the Agent Workflow Framework. This reference covers all core classes, decorators, and methods verified from Microsoft's official documentation.
+Complete API documentation for the Agent Workflow Framework. This reference covers all core classes, decorators, and methods.
 
 ## Core Classes
 
@@ -79,8 +79,8 @@ ChatAgent(
 **Example:**
 
 ```python
-from agent_framework import ChatAgent
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 
 client = AzureAIAgentClient(
@@ -151,7 +151,7 @@ response = await agent.run("Hello, how are you?")
 print(response.text)
 
 # With ChatMessage objects
-from agent_framework import ChatMessage, ChatRole
+from agent_workflow_framework import ChatMessage, ChatRole
 message = ChatMessage(ChatRole.User, "Tell me a joke")
 response = await agent.run(message)
 print(response.text)
@@ -380,7 +380,7 @@ Decorator that transforms a Python function into an AI-callable tool.
 **Usage:**
 
 ```python
-from agent_framework import ai_function
+from agent_workflow_framework import ai_function
 from typing import Annotated
 from pydantic import Field
 
@@ -454,7 +454,7 @@ AIFunction(
 
 ```python
 from pydantic import BaseModel, Field
-from agent_framework import AIFunction
+from agent_workflow_framework import AIFunction
 
 class WeatherArgs(BaseModel):
     location: Annotated[str, Field(description="The city name")]
@@ -541,7 +541,7 @@ Creates directed acyclic graphs (DAGs) for multi-agent orchestration.
 **Usage:**
 
 ```python
-from agent_framework import WorkflowBuilder, executor
+from agent_workflow_framework import WorkflowBuilder, executor
 
 workflow = (WorkflowBuilder()
     .add_edge(executor1, executor2)
@@ -631,7 +631,7 @@ Decorator that defines a workflow node (executor).
 **Usage:**
 
 ```python
-from agent_framework import executor, WorkflowContext
+from agent_workflow_framework import executor, WorkflowContext
 from typing import Annotated
 from pydantic import Field
 
@@ -768,7 +768,7 @@ Client for Azure AI services with Agent Framework.
 **Constructor:**
 
 ```python
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 
 client = AzureAIAgentClient(
@@ -790,7 +790,7 @@ client = AzureAIAgentClient(
 
 ```python
 import os
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 
 client = AzureAIAgentClient(
@@ -805,7 +805,7 @@ client = AzureAIAgentClient(
 Client for Azure OpenAI Responses API.
 
 ```python
-from agent_framework.azure import AzureOpenAIResponsesClient
+from agent_workflow_framework.azure import AzureOpenAIResponsesClient
 
 agent = AzureOpenAIResponsesClient(
     endpoint: str | None = None,
@@ -822,7 +822,7 @@ agent = AzureOpenAIResponsesClient(
 **Example:**
 
 ```python
-from agent_framework.azure import AzureOpenAIResponsesClient
+from agent_workflow_framework.azure import AzureOpenAIResponsesClient
 from azure.identity.aio import AzureCliCredential
 
 agent = AzureOpenAIResponsesClient(
@@ -934,7 +934,7 @@ except AgentInitializationError as e:
 Enum for message roles.
 
 ```python
-from agent_framework import ChatRole
+from agent_workflow_framework import ChatRole
 
 ChatRole.User       # User message
 ChatRole.Assistant  # Assistant message
@@ -947,7 +947,7 @@ ChatRole.Tool       # Tool response message
 Represents a chat message.
 
 ```python
-from agent_framework import ChatMessage, ChatRole
+from agent_workflow_framework import ChatMessage, ChatRole
 
 message = ChatMessage(
     role: ChatRole,
@@ -999,8 +999,8 @@ load_dotenv()
 import asyncio
 import os
 from dotenv import load_dotenv
-from agent_framework import ChatAgent, ai_function, WorkflowBuilder, executor
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent, ai_function, WorkflowBuilder, executor
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 from typing import Annotated
 from pydantic import Field
@@ -1059,9 +1059,7 @@ if __name__ == "__main__":
 
 ## Version Information
 
-This API reference is based on **Microsoft Agent Framework version 1.0.0b251016** (Python).
-
-For the latest updates, see the [official documentation](https://learn.microsoft.com/en-us/agent-framework/).
+This API reference is based on **Agent Framework version 1.0.0b251016** (Python).
 
 ---
 

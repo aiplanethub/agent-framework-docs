@@ -24,7 +24,7 @@ User Input → Executor 1 → Executor 2 → Executor 3 → Final Output
 Every workflow follows this pattern:
 
 ```python
-from agent_framework import WorkflowBuilder, WorkflowContext, executor
+from agent_workflow_framework import WorkflowBuilder, WorkflowContext, executor
 from typing import Annotated
 from pydantic import Field
 
@@ -67,7 +67,7 @@ Create `run_workflow.py`:
 import asyncio
 import os
 from dotenv import load_dotenv
-from agent_framework import WorkflowBuilder, WorkflowContext, executor
+from agent_workflow_framework import WorkflowBuilder, WorkflowContext, executor
 from pydantic import Field
 from typing import Annotated
 

@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the **Agent Workflow Framework** documentation. This framework provides enterprise-grade agent orchestration built on Microsoft's Agent Framework, enabling you to create sophisticated AI workflows with ease.
+Welcome to the **Agent Workflow Framework** documentation. This framework provides enterprise-grade agent orchestration, enabling you to create sophisticated AI workflows with ease.
 
 ---
 
@@ -18,7 +18,7 @@ The Agent Workflow Framework is a powerful Python library that allows you to:
 ## Key Features
 
 **Advanced Agent Orchestration**
-Built on Microsoft's latest Agent Framework with sophisticated orchestration capabilities.
+Built with sophisticated orchestration capabilities for enterprise-grade AI workflows.
 
 **Event-Driven Workflows**
 Create complex workflows with state management and event-driven execution patterns.
@@ -45,8 +45,8 @@ pip install --pre agent-workflow-framework --index-url https://pkgs.dev.azure.co
 Create your first agent:
 
 ```python
-from agent_framework import ChatAgent
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 
 # Create client

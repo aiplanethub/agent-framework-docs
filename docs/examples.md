@@ -1200,7 +1200,7 @@ examples/
 
 Looking for more examples? Check the community contributions:
 
-- [GitHub Discussions](https://github.com/microsoft/agent-framework/discussions)
+- [GitHub Discussions](https://github.com/aiplanet/agent-framework/discussions)
 - [Example Gallery](https://example-gallery.agent-framework.com) _(coming soon)_
 
 ---
@@ -1231,8 +1231,8 @@ Have a great example to share? We welcome contributions!
 Need assistance with these examples?
 
 - **Documentation**: Review the [guide section](guide/concepts.md)
-- **Issues**: Report bugs or request features on [GitHub Issues](https://github.com/microsoft/agent-framework/issues)
-- **Discussions**: Ask questions in [GitHub Discussions](https://github.com/microsoft/agent-framework/discussions)
+- **Issues**: Report bugs or request features on [GitHub Issues](https://github.com/aiplanet/agent-framework/issues)
+- **Discussions**: Ask questions in [GitHub Discussions](https://github.com/aiplanet/agent-framework/discussions)
 - **Support**: Contact the maintainers for enterprise support
 
 ---

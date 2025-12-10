@@ -35,8 +35,8 @@ class MyAgent:  # Regular Python class
 Every agent follows this pattern:
 
 ```python
-from agent_framework import ChatAgent
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 import os
 
@@ -75,8 +75,8 @@ class MyAgent:
 Create a file `agents.py`:
 
 ```python
-from agent_framework import ChatAgent
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 import os
 
@@ -209,7 +209,7 @@ The client handles authentication and API calls:
 
 ```python
 from azure.identity.aio import AzureCliCredential
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework.azure import AzureAIAgentClient
 
 # Automatically uses your `az login` credentials
 client = AzureAIAgentClient(
@@ -364,7 +364,7 @@ async def test_research_agent():
     load_dotenv()
 
     agent = ResearchAgent()
-    result = await agent.run("What is the Agent Framework by Microsoft?")
+    result = await agent.run("What is the Agent Framework?")
 
     print("\n=== Agent Response ===")
     print(result)
@@ -376,18 +376,18 @@ if __name__ == "__main__":
 ### Expected Output
 
 ```
---- [ResearchAgent] Received query: What is the Agent Framework by Microsoft? ---
-[Tool Call] Searching for: Microsoft Agent Framework
-[Tool Call] Reading URL: https://microsoft.com/agent-framework
+--- [ResearchAgent] Received query: What is the Agent Framework? ---
+[Tool Call] Searching for: Agent Framework
+[Tool Call] Reading URL: https://example.com/agent-framework
 --- [ResearchAgent] Responding ---
 
 === Agent Response ===
-The Microsoft Agent Framework is a comprehensive platform for building 
+The Agent Framework is a comprehensive platform for building
 enterprise-grade AI agents. It provides advanced orchestration capabilities,
 robust tool integration, and Azure-native deployment options.
 
 Sources:
-- https://microsoft.com/agent-framework
+- https://example.com/agent-framework
 ```
 
 ## Best Practices

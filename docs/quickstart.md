@@ -55,8 +55,8 @@ Create a file called `first_agent.py`:
 import asyncio
 import os
 from dotenv import load_dotenv
-from agent_framework import ChatAgent
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 
 # Load environment variables from .env file
@@ -148,8 +148,8 @@ Create `agent_with_tools.py`:
 import asyncio
 import os
 from dotenv import load_dotenv
-from agent_framework import ChatAgent, ai_function
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent, ai_function
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 from typing import Annotated
 from pydantic import Field
@@ -314,8 +314,8 @@ Let's create an agent with **multiple tools** for different tasks:
 import asyncio
 import os
 from dotenv import load_dotenv
-from agent_framework import ChatAgent, ai_function
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent, ai_function
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 from typing import Annotated
 from pydantic import Field
@@ -456,8 +456,8 @@ By default, each `agent.run()` call is independent. To create a **conversation w
 import asyncio
 import os
 from dotenv import load_dotenv
-from agent_framework import ChatAgent
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 
 load_dotenv()
@@ -534,8 +534,8 @@ For long responses, use streaming to display text as it's generated:
 import asyncio
 import os
 from dotenv import load_dotenv
-from agent_framework import ChatAgent
-from agent_framework.azure import AzureAIAgentClient
+from agent_workflow_framework import ChatAgent
+from agent_workflow_framework.azure import AzureAIAgentClient
 from azure.identity.aio import AzureCliCredential
 
 load_dotenv()
@@ -692,7 +692,7 @@ def calculator(
 
 ---
 
-### Issue: "ModuleNotFoundError: No module named 'agent_framework'"
+### Issue: "ModuleNotFoundError: No module named 'agent_workflow_framework'"
 
 **Cause:** Framework not installed or wrong Python environment
 
@@ -700,7 +700,7 @@ def calculator(
 
 1. **Verify installation:**
 ```bash
-python -c "import agent_framework; print(agent_framework.__version__)"
+python -c "import agent_workflow_framework; print(agent_workflow_framework.__version__)"
 ```
 
 2. **If not installed, follow [Installation Guide](installation.md)**
@@ -811,8 +811,8 @@ Create an agent that can:
 
 Need assistance?
 
-- = **[GitHub Discussions](https://github.com/microsoft/agent-framework/discussions)** - Ask questions
-- = **[Report Issues](https://github.com/microsoft/agent-framework/issues)** - Found a bug?
+- = **[GitHub Discussions](https://github.com/aiplanet/agent-workflow-framework/discussions)** - Ask questions
+- = **[Report Issues](https://github.com/aiplanet/agent-workflow-framework/issues)** - Found a bug?
 - = **[Full Documentation](index.md)** - Comprehensive guides
 - ** **[Examples](examples.md)** - Learn from complete examples
 

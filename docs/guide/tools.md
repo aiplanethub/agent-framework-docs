@@ -19,7 +19,7 @@ Tools are Python functions that agents can call to perform specific tasks:
 Every tool follows this pattern:
 
 ```python
-from agent_framework import ai_function
+from agent_workflow_framework import ai_function
 from typing import Annotated
 from pydantic import Field
 
@@ -39,7 +39,7 @@ def tool_name(
 Create a file at `src/agent_workflow_framework/tools/web_tools.py`:
 
 ```python
-from agent_framework import ai_function
+from agent_workflow_framework import ai_function
 from pydantic import Field
 from typing import Annotated
 import httpx
@@ -57,7 +57,7 @@ def web_search(
     # This is a mock search for demonstration.
     # In a real app, you would use an actual search API.
     mock_results = {
-        "AI framework": "Result: Microsoft Agent Framework is a new platform...",
+        "AI framework": "Result: Agent Framework is a new platform...",
         "python": "Result: Python is an interpreted, high-level programming language..."
     }
 
