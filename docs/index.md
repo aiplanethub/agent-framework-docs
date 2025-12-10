@@ -6,7 +6,7 @@ Welcome to the **Agent Workflow Framework** documentation. This framework provid
 
 ## What is Agent Workflow Framework?
 
-The Agent Workflow Framework is a powerful Python library that allows you to:
+The Agent Workflow Framework is a powerful Python framework that allows you to:
 
 - Build intelligent AI agents with custom tools and capabilities
 - Orchestrate complex multi-agent workflows
