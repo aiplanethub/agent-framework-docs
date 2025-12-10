@@ -582,9 +582,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#issue-modulenotfounderror-no-module-named-agent_framework" class="md-nav__link">
+  <a href="#issue-modulenotfounderror-no-module-named-agent_workflow_framework" class="md-nav__link">
     <span class="md-ellipsis">
-      Issue: "ModuleNotFoundError: No module named 'agent_framework'"
+      Issue: "ModuleNotFoundError: No module named 'agent_workflow_framework'"
     </span>
   </a>
   
@@ -1309,9 +1309,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#issue-modulenotfounderror-no-module-named-agent_framework" class="md-nav__link">
+  <a href="#issue-modulenotfounderror-no-module-named-agent_workflow_framework" class="md-nav__link">
     <span class="md-ellipsis">
-      Issue: "ModuleNotFoundError: No module named 'agent_framework'"
+      Issue: "ModuleNotFoundError: No module named 'agent_workflow_framework'"
     </span>
   </a>
   
@@ -1519,8 +1519,8 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># Load environment variables from .env file</span>
@@ -1594,8 +1594,8 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span><span class="p">,</span> <span class="n">ai_function</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span><span class="p">,</span> <span class="n">ai_function</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
@@ -1734,8 +1734,8 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span><span class="p">,</span> <span class="n">ai_function</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span><span class="p">,</span> <span class="n">ai_function</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
 </span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
 </span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
@@ -1868,8 +1868,8 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
 </span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
 </span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">load_dotenv</span><span class="p">()</span>
@@ -1938,8 +1938,8 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
 </span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>
 </span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="n">load_dotenv</span><span class="p">()</span>
@@ -2077,13 +2077,13 @@
 </li>
 </ol>
 <hr />
-<h3 id="issue-modulenotfounderror-no-module-named-agent_framework">Issue: "ModuleNotFoundError: No module named 'agent_framework'"<a class="headerlink" href="#issue-modulenotfounderror-no-module-named-agent_framework" title="Permanent link">&para;</a></h3>
+<h3 id="issue-modulenotfounderror-no-module-named-agent_workflow_framework">Issue: "ModuleNotFoundError: No module named 'agent_workflow_framework'"<a class="headerlink" href="#issue-modulenotfounderror-no-module-named-agent_workflow_framework" title="Permanent link">&para;</a></h3>
 <p><strong>Cause:</strong> Framework not installed or wrong Python environment</p>
 <p><strong>Solution:</strong></p>
 <ol>
 <li>
 <p><strong>Verify installation:</strong>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import agent_framework; print(agent_framework.__version__)&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import agent_workflow_framework; print(agent_workflow_framework.__version__)&quot;</span>
 </span></code></pre></div></p>
 </li>
 <li>
@@ -2180,8 +2180,8 @@
 <h2 id="get-help">Get Help<a class="headerlink" href="#get-help" title="Permanent link">&para;</a></h2>
 <p>Need assistance?</p>
 <ul>
-<li>= <strong><a href="https://github.com/microsoft/agent-framework/discussions">GitHub Discussions</a></strong> - Ask questions</li>
-<li>= <strong><a href="https://github.com/microsoft/agent-framework/issues">Report Issues</a></strong> - Found a bug?</li>
+<li>= <strong><a href="https://github.com/aiplanet/agent-workflow-framework/discussions">GitHub Discussions</a></strong> - Ask questions</li>
+<li>= <strong><a href="https://github.com/aiplanet/agent-workflow-framework/issues">Report Issues</a></strong> - Found a bug?</li>
 <li>= <strong><a href="../">Full Documentation</a></strong> - Comprehensive guides</li>
 <li>** <strong><a href="../examples/">Examples</a></strong> - Learn from complete examples</li>
 </ul>

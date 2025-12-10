@@ -1328,7 +1328,7 @@
 
 
 <h1 id="api-reference">API Reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
-<p>Complete API documentation for the Agent Workflow Framework. This reference covers all core classes, decorators, and methods verified from Microsoft's official documentation.</p>
+<p>Complete API documentation for the Agent Workflow Framework. This reference covers all core classes, decorators, and methods.</p>
 <h2 id="core-classes">Core Classes<a class="headerlink" href="#core-classes" title="Permanent link">&para;</a></h2>
 <h3 id="chatagent">ChatAgent<a class="headerlink" href="#chatagent" title="Permanent link">&para;</a></h3>
 <p>The primary agent implementation that uses a chat client to interact with language models.</p>
@@ -1505,8 +1505,8 @@
 <li><code>AgentInitializationError</code>: If both <code>conversation_id</code> and <code>chat_message_store_factory</code> are provided</li>
 </ul>
 <p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AzureAIAgentClient</span><span class="p">(</span>
@@ -1583,7 +1583,7 @@
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># With ChatMessage objects</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatMessage</span><span class="p">,</span> <span class="n">ChatRole</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatMessage</span><span class="p">,</span> <span class="n">ChatRole</span>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">message</span> <span class="o">=</span> <span class="n">ChatMessage</span><span class="p">(</span><span class="n">ChatRole</span><span class="o">.</span><span class="n">User</span><span class="p">,</span> <span class="s2">&quot;Tell me a joke&quot;</span><span class="p">)</span>
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
@@ -1835,7 +1835,7 @@
 <h3 id="ai_function">@ai_function<a class="headerlink" href="#ai_function" title="Permanent link">&para;</a></h3>
 <p>Decorator that transforms a Python function into an AI-callable tool.</p>
 <p><strong>Usage:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ai_function</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ai_function</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
 </span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
@@ -1929,7 +1929,7 @@
 </table>
 <p><strong>Example:</strong></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">AIFunction</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">AIFunction</span>
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">WeatherArgs</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>    <span class="n">location</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;The city name&quot;</span><span class="p">)]</span>
@@ -2008,7 +2008,7 @@
 <h3 id="workflowbuilder">WorkflowBuilder<a class="headerlink" href="#workflowbuilder" title="Permanent link">&para;</a></h3>
 <p>Creates directed acyclic graphs (DAGs) for multi-agent orchestration.</p>
 <p><strong>Usage:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">WorkflowBuilder</span><span class="p">,</span> <span class="n">executor</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">WorkflowBuilder</span><span class="p">,</span> <span class="n">executor</span>
 </span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
 </span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">workflow</span> <span class="o">=</span> <span class="p">(</span><span class="n">WorkflowBuilder</span><span class="p">()</span>
 </span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">executor1</span><span class="p">,</span> <span class="n">executor2</span><span class="p">)</span>
@@ -2100,7 +2100,7 @@
 <h3 id="executor">@executor<a class="headerlink" href="#executor" title="Permanent link">&para;</a></h3>
 <p>Decorator that defines a workflow node (executor).</p>
 <p><strong>Usage:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">executor</span><span class="p">,</span> <span class="n">WorkflowContext</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">executor</span><span class="p">,</span> <span class="n">WorkflowContext</span>
 </span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
 </span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
 </span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>
@@ -2225,7 +2225,7 @@
 <h3 id="azureaiagentclient">AzureAIAgentClient<a class="headerlink" href="#azureaiagentclient" title="Permanent link">&para;</a></h3>
 <p>Client for Azure AI services with Agent Framework.</p>
 <p><strong>Constructor:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
 </span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
 </span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AzureAIAgentClient</span><span class="p">(</span>
@@ -2263,7 +2263,7 @@
 </table>
 <p><strong>Example:</strong></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
 </span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>
 </span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="n">client</span> <span class="o">=</span> <span class="n">AzureAIAgentClient</span><span class="p">(</span>
@@ -2274,7 +2274,7 @@
 </span></code></pre></div>
 <h3 id="azureopenairesponsesclient">AzureOpenAIResponsesClient<a class="headerlink" href="#azureopenairesponsesclient" title="Permanent link">&para;</a></h3>
 <p>Client for Azure OpenAI Responses API.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureOpenAIResponsesClient</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureOpenAIResponsesClient</span>
 </span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>
 </span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">AzureOpenAIResponsesClient</span><span class="p">(</span>
 </span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>    <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2288,7 +2288,7 @@
 </span><span id="__span-38-12"><a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a><span class="p">)</span>
 </span></code></pre></div>
 <p><strong>Example:</strong></p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureOpenAIResponsesClient</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureOpenAIResponsesClient</span>
 </span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
 </span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">AzureOpenAIResponsesClient</span><span class="p">(</span>
@@ -2401,7 +2401,7 @@
 <h2 id="type-aliases-and-enums">Type Aliases and Enums<a class="headerlink" href="#type-aliases-and-enums" title="Permanent link">&para;</a></h2>
 <h3 id="chatrole">ChatRole<a class="headerlink" href="#chatrole" title="Permanent link">&para;</a></h3>
 <p>Enum for message roles.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatRole</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatRole</span>
 </span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>
 </span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="n">ChatRole</span><span class="o">.</span><span class="n">User</span>       <span class="c1"># User message</span>
 </span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="n">ChatRole</span><span class="o">.</span><span class="n">Assistant</span>  <span class="c1"># Assistant message</span>
@@ -2410,7 +2410,7 @@
 </span></code></pre></div>
 <h3 id="chatmessage">ChatMessage<a class="headerlink" href="#chatmessage" title="Permanent link">&para;</a></h3>
 <p>Represents a chat message.</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatMessage</span><span class="p">,</span> <span class="n">ChatRole</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatMessage</span><span class="p">,</span> <span class="n">ChatRole</span>
 </span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>
 </span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="n">message</span> <span class="o">=</span> <span class="n">ChatMessage</span><span class="p">(</span>
 </span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a>    <span class="n">role</span><span class="p">:</span> <span class="n">ChatRole</span><span class="p">,</span>
@@ -2469,8 +2469,8 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
 </span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span><span class="p">,</span> <span class="n">ai_function</span><span class="p">,</span> <span class="n">WorkflowBuilder</span><span class="p">,</span> <span class="n">executor</span>
-</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAgent</span><span class="p">,</span> <span class="n">ai_function</span><span class="p">,</span> <span class="n">WorkflowBuilder</span><span class="p">,</span> <span class="n">executor</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">agent_workflow_framework.azure</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureAIAgentClient</span>
 </span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">azure.identity.aio</span><span class="w"> </span><span class="kn">import</span> <span class="n">AzureCliCredential</span>
 </span><span id="__span-50-7"><a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
 </span><span id="__span-50-8"><a id="__codelineno-50-8" name="__codelineno-50-8" href="#__codelineno-50-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">Field</span>
@@ -2526,8 +2526,7 @@
 </span></code></pre></div>
 <hr />
 <h2 id="version-information">Version Information<a class="headerlink" href="#version-information" title="Permanent link">&para;</a></h2>
-<p>This API reference is based on <strong>Microsoft Agent Framework version 1.0.0b251016</strong> (Python).</p>
-<p>For the latest updates, see the <a href="https://learn.microsoft.com/en-us/agent-framework/">official documentation</a>.</p>
+<p>This API reference is based on <strong>Agent Framework version 1.0.0b251016</strong> (Python).</p>
 <hr />
 <h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
 <ul>
